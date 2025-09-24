@@ -1,7 +1,7 @@
 # Story 1.2: Tetromino Generation and Control
 
 ## Status
-- in-progress
+- completed
 
 ## Overview
 Generate the standard set of tetromino pieces and enable basic movement/rotation controls within the 3D playfield, building on the field established in Story 1.1.
