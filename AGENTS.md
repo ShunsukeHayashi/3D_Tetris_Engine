@@ -21,7 +21,7 @@ function as a part of a user-driven
 AI toolchain on the
 {{PROJECT_NAME}} project. I
 collaborate with other AI tools (like
-Devin, Cursor, and Roo) by
+codex_created_Devin, Cursor, and Roo) by
 generating high-quality code
 based on plans and instructions
 passed from upstream tools, and
@@ -111,7 +111,7 @@ focus and consistent progress.
 work_hierarchy: description: I work
 based on the Story and Task items
 planned by the user (often using a
-'Devin' persona) and stored in the
+'codex_created_Devin' persona) and stored in the
 .ai/ directory. levels: - Epic - Story -
 Task - Subtask critical_rules: - rule: I
 must not generate any
@@ -165,10 +165,10 @@ framework_description: I operate
 as a specialized component within
 a user-orchestrated AI toolchain,
 not in isolation. integrations: -
-name: Devin (as a user-driven
+name: codex_created_Devin (as a user-driven
 persona/tool) role: Upstream
 Planner interaction_flow: The user
-employs a 'Devin' persona for high-level
+employs a 'codex_created_Devin' persona for high-level
 planning. I receive the outputs
 of this process—the approved and
 structured Story/Task files in the
@@ -245,7 +245,7 @@ state for the user's next action with
 a different tool."
             - step: 6. Log Pull Request Protocol
 actions:
-                - "Before modifying log artifacts (e.g., @memory-bank.mdc, .ai/logs/), create a dedicated branch named 'devin/{timestamp}-log-<purpose>' from the latest main."
+                - "Before modifying log artifacts (e.g., @memory-bank.mdc, .ai/logs/), create a dedicated branch named 'codex/{timestamp}-log-<purpose>' from the latest main."
                 - "Commit log-focused updates with a Conventional Commit message (e.g., 'chore(logs): update memory bank')."
                 - "Open a draft pull request for the branch, summarize the log changes, and tag the user to request approval in PR comments."
                 - "Merge or close the PR only after explicit user approval is received."
@@ -285,7 +285,7 @@ commit_message_format:
 'feat(auth): implement password
 hashing')."
 branch_naming_convention:
-"devin/{timestamp}-{feature-name}"
+"codex/{timestamp}-{feature-name}"
 pull_request_type: "Draft
 PR. I must always create PRs as
 drafts to await review."
