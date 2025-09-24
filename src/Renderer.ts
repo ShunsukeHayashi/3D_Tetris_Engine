@@ -1,8 +1,12 @@
 import {
   AmbientLight,
+  BoxGeometry,
   Color,
   DirectionalLight,
+  EdgesGeometry,
   Group,
+  LineBasicMaterial,
+  LineSegments,
   Mesh,
   MeshStandardMaterial,
   PerspectiveCamera,
@@ -106,6 +110,9 @@ export class Renderer {
     this.container = null;
   }
 
+  /**
+   * Construct floor, walls, ceiling, and a translucent wireframe to visualize the playable volume.
+   */
   private createFieldBounds(): Group {
     const group = new Group();
     group.position.set(FIELD_ORIGIN.x, FIELD_ORIGIN.y, FIELD_ORIGIN.z);
@@ -124,6 +131,14 @@ export class Renderer {
       transparent: true,
       opacity: 0.9
     });
+    const ceilingMaterial = wallMaterial.clone();
+    ceilingMaterial.opacity = 0.35;
+
+    const boundsMaterial = new LineBasicMaterial({
+      color: 0x38bdf8,
+      transparent: true,
+      opacity: 0.45
+    });
 
     const floor = new Mesh(
       new PlaneGeometry(width * CELL_SIZE, depth * CELL_SIZE),
@@ -134,6 +149,17 @@ export class Renderer {
     floor.position.set(
       (width * CELL_SIZE) / 2,
       0,
+      (depth * CELL_SIZE) / 2
+    );
+
+    const ceiling = new Mesh(
+      new PlaneGeometry(width * CELL_SIZE, depth * CELL_SIZE),
+      ceilingMaterial
+    );
+    ceiling.rotation.x = Math.PI / 2;
+    ceiling.position.set(
+      (width * CELL_SIZE) / 2,
+      height * CELL_SIZE,
       (depth * CELL_SIZE) / 2
     );
 
@@ -159,7 +185,19 @@ export class Renderer {
     );
     backWall.rotation.y = Math.PI;
 
-    group.add(floor, leftWall, rightWall, backWall);
+    const boundsGeometry = new BoxGeometry(
+      width * CELL_SIZE,
+      height * CELL_SIZE,
+      depth * CELL_SIZE
+    );
+    boundsGeometry.translate(
+      (width * CELL_SIZE) / 2,
+      (height * CELL_SIZE) / 2,
+      (depth * CELL_SIZE) / 2
+    );
+    const bounds = new LineSegments(new EdgesGeometry(boundsGeometry), boundsMaterial);
+
+    group.add(floor, ceiling, leftWall, rightWall, backWall, bounds);
 
     return group;
   }
