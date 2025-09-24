@@ -1,7 +1,7 @@
 # Story 1.1: Game Field Setup
 
 ## Status
-- in-progress
+- completed
 
 ## Overview
 Implement the initial 3D game field so that the player sees a clearly defined play area consistent with the PRD and architecture guidelines.
