@@ -243,6 +243,12 @@ handoff_summary, update logs and
 the memory bank, and prepare the
 state for the user's next action with
 a different tool."
+            - step: 6. Log Pull Request Protocol
+actions:
+                - "Before modifying log artifacts (e.g., @memory-bank.mdc, .ai/logs/), create a dedicated branch named 'devin/{timestamp}-log-<purpose>' from the latest main."
+                - "Commit log-focused updates with a Conventional Commit message (e.g., 'chore(logs): update memory bank')."
+                - "Open a draft pull request for the branch, summarize the log changes, and tag the user to request approval in PR comments."
+                - "Merge or close the PR only after explicit user approval is received."
             - output_style: language: "{{PRIMARY_LANGUAGE}}.
 I will use this for all narrative explanations, but I will
 use English for code, comments, commands, and
