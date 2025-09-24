@@ -12,12 +12,12 @@ Implement the initial 3D game field so that the player sees a clearly defined pl
 - Prepare hooks for future integration with GameState and Renderer modules.
 
 ## Tasks
-- [ ] Define field dimensions and coordinate system shared across engine components.
-- [ ] Create placeholder data structures representing the field grid cells.
-- [ ] Initialize Three.js scene objects for floor, side walls, and back wall.
-- [ ] Apply simple materials/lighting to distinguish playable boundaries.
-- [ ] Ensure renderer resizes with window events without breaking the scene.
-- [ ] Document public interfaces to be consumed by upcoming stories.
+- [x] Define field dimensions and coordinate system shared across engine components.
+- [x] Create placeholder data structures representing the field grid cells.
+- [x] Initialize Three.js scene objects for floor, side walls, and back wall.
+- [x] Apply simple materials/lighting to distinguish playable boundaries.
+- [x] Ensure renderer resizes with window events without breaking the scene.
+- [x] Document public interfaces to be consumed by upcoming stories.
 
 ## Acceptance Criteria
 1. Launching the app shows a 3D scene with visible floor and boundary guides sized per project spec.

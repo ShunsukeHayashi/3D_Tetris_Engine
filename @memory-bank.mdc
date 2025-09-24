@@ -3,6 +3,7 @@
 ## Checkpoints
 - 2024-xx-xx: Story 1.1 moved to in-progress.
 - 2024-09-24: Strengthened Renderer field boundaries with ceiling and wireframe; validated via `npm run build`.
+- 2024-09-24: Story 1.1 checklist marked complete; awaiting PR review/merge.
 
 ## Open Issues
 - None currently logged.
@@ -10,3 +11,4 @@
 ## Artifacts
 - .ai/story-1-1.md created.
 - src/Renderer.ts updated with enhanced field boundary visuals.
+- .ai/story-1-1.md checklist updated to reflect completed tasks.
