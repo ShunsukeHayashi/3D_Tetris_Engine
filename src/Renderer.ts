@@ -16,6 +16,7 @@ import {
   WebGLRenderer,
   GridHelper
 } from 'three';
+import type { ActiveTetrominoSnapshot } from './GameState';
 import { GameState } from './GameState';
 import { CELL_SIZE, FIELD_DIMENSIONS, FIELD_ORIGIN } from './constants/field';
 
@@ -29,6 +30,7 @@ export class Renderer {
   private renderer: WebGLRenderer | null = null;
   private container: HTMLElement | null = null;
   private resizeHandler: (() => void) | null = null;
+  private activeTetrominoGroup: Group | null = null;
 
   constructor(gameState: GameState) {
     this.gameState = gameState;
@@ -80,6 +82,7 @@ export class Renderer {
     this.resizeHandler = () => this.onResize();
     window.addEventListener('resize', this.resizeHandler);
 
+    this.updateActiveTetromino(this.gameState.getActiveTetromino());
     this.renderFrame();
   }
 
@@ -104,10 +107,47 @@ export class Renderer {
     }
 
     this.renderer?.dispose();
+    this.disposeActiveTetrominoGroup();
     this.renderer = null;
     this.scene = null;
     this.camera = null;
     this.container = null;
+  }
+
+  public updateActiveTetromino(tetromino: ActiveTetrominoSnapshot | null): void {
+    if (!this.scene) {
+      return;
+    }
+
+    this.disposeActiveTetrominoGroup();
+
+    if (!tetromino) {
+      return;
+    }
+
+    const group = new Group();
+    group.position.set(FIELD_ORIGIN.x, FIELD_ORIGIN.y, FIELD_ORIGIN.z);
+
+    tetromino.blocks.forEach((block) => {
+      const geometry = new BoxGeometry(CELL_SIZE, CELL_SIZE, CELL_SIZE);
+      const material = new MeshStandardMaterial({
+        color: tetromino.color,
+        metalness: 0.1,
+        roughness: 0.35
+      });
+      const mesh = new Mesh(geometry, material);
+      mesh.castShadow = true;
+      mesh.position.set(
+        (block.x + 0.5) * CELL_SIZE,
+        (block.y + 0.5) * CELL_SIZE,
+        (block.z + 0.5) * CELL_SIZE
+      );
+      group.add(mesh);
+    });
+
+    this.activeTetrominoGroup = group;
+    this.scene.add(group);
+    this.renderFrame();
   }
 
   /**
@@ -249,5 +289,25 @@ export class Renderer {
     const width = this.container?.clientWidth ?? window.innerWidth;
     const height = this.container?.clientHeight ?? window.innerHeight;
     return width / height;
+  }
+
+  private disposeActiveTetrominoGroup(): void {
+    if (!this.scene || !this.activeTetrominoGroup) {
+      return;
+    }
+
+    this.activeTetrominoGroup.children.forEach((child) => {
+      if (child instanceof Mesh) {
+        child.geometry.dispose();
+        if (Array.isArray(child.material)) {
+          child.material.forEach((material) => material.dispose());
+        } else {
+          child.material.dispose();
+        }
+      }
+    });
+
+    this.scene.remove(this.activeTetrominoGroup);
+    this.activeTetrominoGroup = null;
   }
 }

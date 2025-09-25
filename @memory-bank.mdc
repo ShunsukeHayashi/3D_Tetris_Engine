@@ -4,6 +4,8 @@
 - 2024-xx-xx: Story 1.1 moved to in-progress.
 - 2024-09-24: Strengthened Renderer field boundaries with ceiling and wireframe; validated via `npm run build`.
 - 2024-09-25: Story 1.1 marked completed; Story 1.2 initiated and set in-progress.
+- 2024-09-25: Implemented Story 1.2 controls (spawn, movement, rotation) and verified via `npm run build`.
+- 2025-09-24: Story 1.2 marked completed; draft PR opened for tetromino control implementation.
 
 ## Open Issues
 - None currently logged.
@@ -12,3 +14,4 @@
 - .ai/story-1-1.md created.
 - src/Renderer.ts updated with enhanced field boundary visuals.
 - .ai/story-1-2.md created with tetromino control plan.
+- src/constants/tetromino.ts added; GameState/GameEngine/Renderer updated for Story 1.2.

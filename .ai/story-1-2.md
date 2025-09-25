@@ -1,7 +1,7 @@
 # Story 1.2: Tetromino Generation and Control
 
 ## Status
-- in-progress
+- completed
 
 ## Overview
 Generate the standard set of tetromino pieces and enable basic movement/rotation controls within the 3D playfield, building on the field established in Story 1.1.
@@ -13,12 +13,12 @@ Generate the standard set of tetromino pieces and enable basic movement/rotation
 - Keep the renderer and game state in sync as tetrominoes move.
 
 ## Tasks
-- [ ] Define tetromino shape data (including rotations) in a shared constants module.
-- [ ] Extend `GameState` to manage active tetromino, spawn queue, and occupancy updates.
-- [ ] Add movement and rotation handlers in `GameEngine`, including basic collision/bounds checks.
-- [ ] Render the active tetromino using Three.js meshes or instancing aligned with the field grid.
-- [ ] Wire keyboard input (e.g., WASD/arrow keys/QE) to movement/rotation functions.
-- [ ] Document public interfaces and usage patterns for upcoming logic stories.
+- [x] Define tetromino shape data (including rotations) in a shared constants module.
+- [x] Extend `GameState` to manage active tetromino, spawn queue, and occupancy updates.
+- [x] Add movement and rotation handlers in `GameEngine`, including basic collision/bounds checks.
+- [x] Render the active tetromino using Three.js meshes or instancing aligned with the field grid.
+- [x] Wire keyboard input (e.g., WASD/arrow keys/QE) to movement/rotation functions.
+- [x] Document public interfaces and usage patterns for upcoming logic stories.
 
 ## Acceptance Criteria
 1. Launching the app spawns an initial tetromino positioned correctly within the playfield.
